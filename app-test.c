@@ -123,7 +123,7 @@ void main_task(intptr_t unused){
     DS_MOTOR(30, 250);
 
     // 左に90度回転
-    while(GyroAngle() > -82) {
+    while(GyroAngle() > -83) {
         TURN_MOTOR(30, -30);
         tslp_tsk(10);
     }
