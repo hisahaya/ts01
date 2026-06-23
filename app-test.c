@@ -169,7 +169,7 @@ void main_task(intptr_t unused){
         }
     }
     // 壁にタッチしたら少し下がる
-    DS_MOTOR(30, 300);
+    DS_MOTOR(30, 250);
 
     // 左に90度回転
     while(GyroAngle() > -85) {
