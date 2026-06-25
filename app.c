@@ -75,7 +75,7 @@ void GoToWall() {   // 壁に向かって後進する関数
 void BackFormWall(int power, int time) {   // 壁にぶつかった後にバックする
     STOP_MOTOR();
     tslp_tsk(300);
-    DS_MOTOR(power, time)
+    DS_MOTOR(power, time);
     STOP_MOTOR();
 }
 
