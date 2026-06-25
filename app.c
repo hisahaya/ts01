@@ -1,5 +1,6 @@
 # include "ev3api.h"
 # include "app.h"
+# include <stdio.h> // printfを使うために必要
 //# include "parameters.h"
 
 /* ---- 前提 ---- */
@@ -87,6 +88,16 @@ void SOUND(int freq, int time) {    // 音を鳴らす関数
     ev3_speaker_play_tone(freq, time);
 }
 
+// PCモニタリング用の関数（センサーやジャイロの値をターミナルに出力する）
+void MonitorStatus(const char* state_name) {
+    int left_color = GetColor(EV3_PORT_1);
+    int right_color = GetColor(EV3_PORT_2);
+    int gyro = GyroAngle();
+    int touch = Touch();
+    // PCのシリアル接続画面に、状態を表示する（\rで同じ行を上書きするように出力します）
+    printf("[%s] L-Color:%d | R-Color:%d | Gyro:%d | Touch:%d\r\n", 
+            state_name, left_color, right_color, gyro, touch);
+}
 
 /* ---------------- メインプログラム ---------------- */
 void main_task(intptr_t unused){
@@ -134,7 +145,7 @@ void main_task(intptr_t unused){
         }
     }
     // 壁にタッチしたら少し下がる
-    DS_MOTOR(30, 250);
+    DS_MOTOR(30, 600);
 
     // 左に90度回転
     while(GyroAngle() > -83) {
@@ -177,7 +188,7 @@ void main_task(intptr_t unused){
     tslp_tsk(300);
 
     // 壁にタッチしたら少し下がる
-    DS_MOTOR(30, 300);
+    DS_MOTOR(30, 600);
 
     // 左に90度回転
     while(GyroAngle() > -83) {
