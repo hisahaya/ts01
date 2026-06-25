@@ -141,12 +141,16 @@ void main_task(intptr_t unused){
         TURN_MOTOR(30, -30);    // 右と左が反対の数値の可能性
         tslp_tsk(10);
     }
+
+    tslp_tsk(300);
+
     // モーターストップ
     STOP_MOTOR();
+    tslp_tsk(300);
 
     // ジャイロリセット
     GyroReset();
-    tslp_tsk(30);
+    tslp_tsk(300);
 
 
     /* ---------------- 2. 黄線トレース ---------------- */
@@ -169,16 +173,21 @@ void main_task(intptr_t unused){
             R_MOTOR(-30);
         }
     }
+
+    tslp_tsk(300);
+
     // 壁にタッチしたら少し下がる
     DS_MOTOR(30, 300);
 
     // 左に90度回転
-    while(GyroAngle() > -166) {
-        TURN_MOTOR(20, -20);    // 右と左が反対の数値の可能性
+    while(GyroAngle() > -83) {
+        TURN_MOTOR(30, -30);    // 右と左が反対の数値の可能性
         tslp_tsk(10);
     }
     // モーターストップ
     STOP_MOTOR();
+    tslp_tsk(300);
+
 
     // 後ろの壁に向かって後退する
     GoToWall();
