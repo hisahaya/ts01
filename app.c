@@ -61,14 +61,14 @@ void STOP_MOTOR() {   // 両モーターの停止関数
     tslp_tsk(100);
 }
 
-void GoToWall() {   // 壁に向かって後進する関数
-    DS_MOTOR(50, 1500); // 1.5秒後退する
-    GyroReset();        // ジャイロリセット
-}
-
 void GyroReset() {  // ジャイロセンサーのリセット関数
     ev3_gyro_sensor_reset(EV3_PORT_4);
     tslp_tsk(100);
+}
+
+void GoToWall() {   // 壁に向かって後進する関数
+    DS_MOTOR(50, 1500); // 1.5秒後退する
+    GyroReset();        // ジャイロリセット
 }
 
 int GyroAngle() {   // ジャイロセンサーの角度取得関数
