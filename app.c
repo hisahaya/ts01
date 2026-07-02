@@ -63,17 +63,18 @@ void DAS_MOTOR(int powerL, int powerR, int time) {  // 両モーターの関数 
 void STOP_MOTOR() {   // 両モーターの停止関数
     ev3_motor_stop(EV3_PORT_A, true);
     ev3_motor_stop(EV3_PORT_B, true);
-    slp(100);
+    slp(1000);
 }
 
 void GyroReset() {  // ジャイロセンサーのリセット関数
     ev3_gyro_sensor_reset(EV3_PORT_4);
-    slp(100);
+    slp(500);
 }
 
 void GoToWall() {   // 壁に向かって後進する関数
     DS_MOTOR(50, 1500); // 1.5秒後退する
-    GyroReset();        // ジャイロリセット
+    STOP_MOTOR();
+    slp(500);
 }
 
 void BackFormWall(int power, int time) {   // 壁にぶつかった後にバックする
@@ -185,11 +186,9 @@ void main_task(intptr_t unused){
 
     // モーターストップ
     STOP_MOTOR();
-    slp(500);
 
     // ジャイロリセット
     GyroReset();
-    slp(300);
 
 
     /* ---------------- 2. 黄線トレース ---------------- */
@@ -226,14 +225,12 @@ void main_task(intptr_t unused){
 
     // モーターストップ
     STOP_MOTOR();
-    slp(500);
 
     // 後ろの壁に向かって後退する
     GoToWall();
 
     // ジャイロリセット
     GyroReset();
-    slp(300);
 
     /* ---------------- 3. 緑線まで直進 ---------------- */
     // 緑線を検知するまで直進
@@ -256,6 +253,9 @@ void main_task(intptr_t unused){
 
     // 後ろの壁に向かって後退する
     GoToWall();
+
+    // ジャイロリセット
+    GyroReset();
 
 
     /* ---------------- 4. 緑線トレース ---------------- */
@@ -280,10 +280,10 @@ void main_task(intptr_t unused){
         }
     }
     // 壁にタッチしたら少し下がる
-    DS_MOTOR(30, 500);
+    DS_MOTOR(30, 600);
 
     // 左に90度回転
-    while(GyroAngle() > -87) {
+    while(GyroAngle() > -90) {
         MonitorLCD("4. Turn Left"); // LCD画面を更新
         TURN_MOTOR(30, -30);    // 右と左が反対の数値の可能性
         slp(10);
@@ -302,7 +302,7 @@ void main_task(intptr_t unused){
         slp(10);
     }
     // 壁にタッチしたら少し下がる
-    DS_MOTOR(30, 200);
+    DS_MOTOR(30, 600);
 
     // 左に90度回転
     while(GyroAngle() > -90) {
@@ -314,6 +314,9 @@ void main_task(intptr_t unused){
 
     // 後ろの壁に向かって後退する
     GoToWall();
+
+    // ジャイロリセット
+    GyroReset();
 
 
     /* ---------------- 6. 黒線まで黄線トレース ---------------- */
@@ -350,6 +353,9 @@ void main_task(intptr_t unused){
     // 後ろの壁に向かって後退する
     GoToWall();
 
+    // ジャイロリセット
+    GyroReset();
+
 
     /* ---------------- 7. 赤線まで黒線トレース ---------------- */
     // 赤線を検知するまで黒線をトレース
@@ -382,6 +388,9 @@ void main_task(intptr_t unused){
     // モーターストップ
     STOP_MOTOR();
 
+    // ジャイロリセット
+    GyroReset();
+
 
     /* ---------------- 8. 赤線トレース ---------------- */
     // 壁タッチまで赤線をトレース
@@ -404,7 +413,7 @@ void main_task(intptr_t unused){
         }
     }
     // 壁にタッチしたら少し下がる
-    DS_MOTOR(30, 300);
+    DS_MOTOR(30, 600);
 
     // 左に90度回転
     while(GyroAngle() > -90) {
@@ -416,6 +425,9 @@ void main_task(intptr_t unused){
 
     // 後ろの壁に向かって後退する
     GoToWall();
+
+    // ジャイロリセット
+    GyroReset();
     
     
     /* ---------------- 9. 緑線まで直進 ---------------- */
@@ -437,6 +449,9 @@ void main_task(intptr_t unused){
 
     // 後ろの壁に向かって後退する
     GoToWall();
+
+    // ジャイロリセット
+    GyroReset();
 
 
     /* ---------------- 10. 緑線トレース ---------------- */
@@ -460,7 +475,7 @@ void main_task(intptr_t unused){
         }
     }
     // 壁にタッチしたら少し下がる
-    DS_MOTOR(30, 300);
+    DS_MOTOR(30, 600);
 
     // 左に90度回転
     while(GyroAngle() > -90) {
@@ -469,6 +484,9 @@ void main_task(intptr_t unused){
     }
     // モーターストップ
     STOP_MOTOR();
+
+    // ジャイロリセット
+    GyroReset();
 
 
     /* ---------------- 11. 赤線まで直進 ---------------- */
@@ -490,6 +508,9 @@ void main_task(intptr_t unused){
 
     // 後ろの壁に向かって後退する
     GoToWall();
+
+    // ジャイロリセット
+    GyroReset();
 
 
     /* ---------------- 12. 黒線まで赤線トレース ---------------- */
@@ -516,7 +537,7 @@ void main_task(intptr_t unused){
     DS_MOTOR(50, 30);
     
     // 右に90度回転
-    while(GyroAngle() < 85) {
+    while(GyroAngle() < 90) {
         TURN_MOTOR(-30, 30);    // 右と左が反対の数値の可能性
         slp(10);
     }
