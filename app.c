@@ -175,7 +175,7 @@ void main_task(intptr_t unused){
         }
     }
     // 壁にタッチしたら少し下がる
-    BackFormWall(30, 300);
+    BackFormWall(30, 150);
 
     // 左に90度回転
     while(GyroAngle() > -88) {
@@ -243,7 +243,7 @@ void main_task(intptr_t unused){
     DS_MOTOR(30, 300);
 
     // 左に90度回転
-    while(GyroAngle() > -88) {
+    while(GyroAngle() > -85) {
         MonitorLCD("3. Turn Left"); // LCD画面を更新
         TURN_MOTOR(30, -30);    // 右と左が反対の数値の可能性
         slp(10);
