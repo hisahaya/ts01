@@ -280,10 +280,10 @@ void main_task(intptr_t unused){
         }
     }
     // 壁にタッチしたら少し下がる
-    DS_MOTOR(30, 600);
+    BackFormWall(30, 600);
 
     // 左に90度回転
-    while(GyroAngle() > -88) {
+    while(GyroAngle() > -87) {
         MonitorLCD("4. Turn Left"); // LCD画面を更新
         TURN_MOTOR(30, -30);    // 右と左が反対の数値の可能性
         slp(10);
@@ -302,7 +302,7 @@ void main_task(intptr_t unused){
         slp(10);
     }
     // 壁にタッチしたら少し下がる
-    DS_MOTOR(30, 600);
+    BackFromWall(30, 150);
 
     // 左に90度回転
     while(GyroAngle() > -88) {
