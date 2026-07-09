@@ -240,7 +240,7 @@ void main_task(intptr_t unused){
         slp(10);
     }
     // 少し下がる
-    BackFormWall(30, 600);
+    BackFormWall(30, 150);
 
     // 左に90度回転
     while(GyroAngle() > -85) {
@@ -280,7 +280,7 @@ void main_task(intptr_t unused){
         }
     }
     // 壁にタッチしたら少し下がる
-    BackFormWall(30, 600);
+    BackFormWall(30, 150);
 
     // 左に90度回転
     while(GyroAngle() > -85) {
@@ -378,7 +378,7 @@ void main_task(intptr_t unused){
         }
     }
     //少し下がる
-    DS_MOTOR(50, 30);   // いらないかも？
+    BackFormWall(30, 150);   // いらないかも？
 
     // 左に90度回転
     while(GyroAngle() > -88) {
@@ -437,7 +437,7 @@ void main_task(intptr_t unused){
         slp(10);
     }
     // 少し下がる
-    DS_MOTOR(50, 30);   // いらないかも？
+    BackFormWall(30, 150);   // いらないかも？
 
     // 左に90度回転
     while(GyroAngle() > -88) {
